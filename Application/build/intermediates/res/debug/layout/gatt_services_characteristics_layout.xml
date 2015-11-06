@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    android:background="@drawable/wall">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="10:10"
+        style="@style/MyTextViewStyleBold"
+        android:id="@+id/clock_text"
+        android:textSize="50sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sat,May 16"
+        android:textSize="25sp"
+        style="@style/MyTextViewStyle"
+        android:id="@+id/date_text"
+        android:layout_below="@+id/clock_text"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Torino,IT"
+        android:visibility="invisible"
+        android:textSize="20sp"
+        style="@style/MyTextViewStyle"
+        android:id="@+id/cityText"
+        android:layout_below="@+id/date_text"
+        android:layout_alignParentEnd="true" />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/date_text"
+        android:gravity="center">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bluetooth_data"
+            android:layout_weight="1"
+            android:weightSum="1"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="BLE T/H SENSOR"
+                android:textColor="#fff6cc26"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:id="@+id/appname_text"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="10C"
+                android:layout_marginTop="50dp"
+                style="@style/MyTextViewStyleBold"
+                android:textSize="50sp"
+                android:id="@+id/celcius_text"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="70F"
+                android:textSize="50sp"
+                style="@style/MyTextViewStyleBold"
+                android:id="@+id/fara_text"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="HUMIDITY: 60%"
+                android:id="@+id/humidity_text"
+                style="@style/MyTextViewStyle"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/internet_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:visibility="invisible"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="OUTDOOR"
+                android:textColor="#fff6cc26"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:id="@+id/appname2_text"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="10C"
+                android:layout_marginTop="50dp"
+                style="@style/MyTextViewStyleBold"
+                android:textSize="50sp"
+                android:id="@+id/celcius2_text"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="70F"
+                android:textSize="55sp"
+                style="@style/MyTextViewStyleBold"
+                android:id="@+id/fara2_text"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="HUMIDITY: 60%"
+                android:id="@+id/humidity2_text"
+                style="@style/MyTextViewStyle"
+                android:textSize="25sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+</RelativeLayout>
+<!-- From: file:/E:/New%20folder/Application/src/main/res/layout/gatt_services_characteristics_layout.xml -->

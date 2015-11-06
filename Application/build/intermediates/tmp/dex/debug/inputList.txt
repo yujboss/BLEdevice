@@ -1,0 +1,7 @@
+E:\New folder\Application\build\intermediates\classes\debug
+E:\New folder\Application\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-202c59e3e024fadf38ff067a225ef30e941dc8b3.jar
+E:\New folder\Application\build\intermediates\pre-dexed\debug\support-annotations-21.0.2-49cc8a35f4dca91090d1bdd25494f3e1c14f5ae4.jar
+E:\New folder\Application\build\intermediates\pre-dexed\debug\classes-be6c864cdd8a23d10b1ce6b7ceec8231d322eb90.jar
+E:\New folder\Application\build\intermediates\pre-dexed\debug\classes-31feea19c4d13610e670ce565b048ec134a81770.jar
+E:\New folder\Application\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-345134fd523ba7acbdb78f893a85f17f90aa8afc.jar
+E:\New folder\Application\build\intermediates\pre-dexed\debug\classes-3687708ab70c09ae010315f7ceee44159b3c7127.jar
