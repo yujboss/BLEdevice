@@ -39,6 +39,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +49,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -92,10 +94,15 @@ public class DeviceControlActivity extends Activity {
     TimerTask timer_humid, timer_temp;
     String date = "";
     SimpleDateFormat sdf;
+    //////////////
+    private LinearLayout layoutAnalog;
+    private TextView inDoor, outDoor;
+    private ProgressBar vProgressBar;
+// ///////
 
     private TextView cityText, temp2, fara2_text, hum, celcius_text, fara_text, date_text, clock_text, humid_text;
     private boolean flag = true;
-    private LinearLayout ll;
+    private LinearLayout ll,layoutDigital;
     int count = 0;
     FileWriter writer;
     private int[] RGBFrame = {0, 0, 0};
@@ -188,6 +195,13 @@ public class DeviceControlActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gatt_services_characteristics_layout);
+        layoutDigital = (LinearLayout) findViewById(R.id.layoutDigital);
+        /////////////////////////////////////////////////////////////////
+        layoutAnalog = (LinearLayout) findViewById(R.id.layoutAnalog);
+        inDoor = (TextView) findViewById(R.id.inDoorText);
+        outDoor = (TextView) findViewById(R.id.outDoorText);
+        vProgressBar = (ProgressBar) findViewById(R.id.vprogressbar);
+        ////////////////////////////////////////////////////////////////////
         initSwitch();
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
@@ -617,11 +631,62 @@ public class DeviceControlActivity extends Activity {
     }
 
     private void switchDigital() {
+        layoutDigital.setVisibility(View.VISIBLE);
+        layoutAnalog.setVisibility(View.INVISIBLE);
+        inDoor.setVisibility(View.INVISIBLE);
+        outDoor.setVisibility(View.INVISIBLE);
+        clock_text.setVisibility(View.VISIBLE);
+        date_text.setVisibility(View.VISIBLE);
         switchStatus.setText("Digital");
-
     }
 
     private void switchAnalog() {
+        layoutDigital.setVisibility(View.INVISIBLE);
+        layoutAnalog.setVisibility(View.VISIBLE);
+        inDoor.setVisibility(View.VISIBLE);
+        outDoor.setVisibility(View.VISIBLE);
+        clock_text.setVisibility(View.INVISIBLE);
+        date_text.setVisibility(View.INVISIBLE);
         switchStatus.setText("Analog");
+        new asyncTaskUpdateProgress().execute();
+    }
+
+
+    /////////////
+
+
+    public class asyncTaskUpdateProgress extends AsyncTask<Void, Integer, Void> {
+
+        int progress;
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // TODO Auto-generated method stub
+            //buttonStart.setClickable(true);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            progress = 0;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            // TODO Auto-generated method stub
+            vProgressBar.setProgress(values[0]);
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            // TODO Auto-generated method stub
+            while (progress < 100) {
+                progress++;
+                publishProgress(progress);
+                SystemClock.sleep(100);
+            }
+            return null;
+        }
+        /////////////
     }
 }

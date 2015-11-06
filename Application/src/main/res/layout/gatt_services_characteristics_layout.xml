@@ -1,203 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/wall">
 
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="10:10"
-        style="@style/MyTextViewStyleBold"
         android:id="@+id/clock_text"
-        android:textSize="50sp"
+        style="@style/MyTextViewStyleBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
+        android:text="10:10"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="50sp"
 
         android:visibility="invisible" />
 
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Sat,May 16"
-        android:textSize="25sp"
-        style="@style/MyTextViewStyle"
         android:id="@+id/date_text"
-        android:layout_below="@+id/clock_text"
+        style="@style/MyTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_below="@+id/clock_text"
+        android:text="Sat,May 16"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="25sp"
         android:visibility="invisible" />
 
     <TextView
+        android:id="@+id/cityText"
+        style="@style/MyTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Torino,IT"
-        android:visibility="invisible"
-        android:textSize="20sp"
-        style="@style/MyTextViewStyle"
-        android:id="@+id/cityText"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/date_text"
-        android:layout_alignParentEnd="true" />
+        android:text="Torino,IT"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="20sp"
+        android:visibility="invisible" />
 
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <FrameLayout
+        android:id="@+id/frameLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/date_text"
         android:gravity="center"
-        android:visibility="invisible"
-        android:id="@+id/layoutDigital">
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/bluetooth_data"
-            android:layout_weight="1"
-            android:weightSum="1"
-            android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="BLE T/H SENSOR"
-                android:textColor="#fff6cc26"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:id="@+id/appname_text"
-                android:layout_gravity="center_horizontal" />
+            android:id="@+id/layoutDigital"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/date_text"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="invisible">
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/bluetooth_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="10C"
-                android:layout_marginTop="50dp"
-                style="@style/MyTextViewStyleBold"
-                android:textSize="50sp"
-                android:id="@+id/celcius_text"
-                android:layout_gravity="center_horizontal" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="70F"
-                android:textSize="50sp"
-                style="@style/MyTextViewStyleBold"
-                android:id="@+id/fara_text"
-                android:layout_gravity="center_horizontal" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:weightSum="1">
 
-            <TextView
+                <TextView
+                    android:id="@+id/appname_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="BLE T/H SENSOR"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#fff6cc26"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/celcius_text"
+                    style="@style/MyTextViewStyleBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:text="10C"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/fara_text"
+                    style="@style/MyTextViewStyleBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="70F"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/humidity_text"
+                    style="@style/MyTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="HUMIDITY: 60%"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/internet_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="HUMIDITY: 60%"
-                android:id="@+id/humidity_text"
-                style="@style/MyTextViewStyle"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:gravity="center" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/appname2_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="OUTDOOR"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#fff6cc26"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/celcius2_text"
+                    style="@style/MyTextViewStyleBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:text="10C"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/fara2_text"
+                    style="@style/MyTextViewStyleBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="70F"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="55sp" />
+
+                <TextView
+                    android:id="@+id/humidity2_text"
+                    style="@style/MyTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="HUMIDITY: 60%"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="25sp" />
+            </LinearLayout>
         </LinearLayout>
-
 
         <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/internet_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:visibility="invisible"
-            android:layout_weight="1"
-            android:gravity="center_vertical">
+            android:id="@+id/layoutAnalog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/date_text"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-
-            <TextView
+            <LinearLayout
+                android:id="@+id/bluetooth_data_analog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="OUTDOOR"
-                android:textColor="#fff6cc26"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:id="@+id/appname2_text"
-                android:layout_gravity="center_horizontal" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:weightSum="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="10C"
-                android:layout_marginTop="50dp"
-                style="@style/MyTextViewStyleBold"
-                android:textSize="50sp"
-                android:id="@+id/celcius2_text"
-                android:layout_gravity="center_horizontal" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="70F"
-                android:textSize="55sp"
-                style="@style/MyTextViewStyleBold"
-                android:id="@+id/fara2_text"
-                android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="INDOOR"
+                    android:id="@+id/inDoorText"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#fff6cc26"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-            <TextView
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/thermoLocalImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:src="@drawable/wall_thermometer_celsius_fahrenheit_box_368lar" />
+
+                    <ProgressBar
+                        android:id="@+id/vprogressbar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginBottom="100dp"
+                        android:progressDrawable="@drawable/verticalprogressbar"
+                        android:layout_gravity="center_horizontal" />
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/internet_data_analog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="HUMIDITY: 60%"
-                android:id="@+id/humidity2_text"
-                style="@style/MyTextViewStyle"
-                android:textSize="25sp"
-                android:layout_gravity="center_horizontal"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:gravity="center" />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="OUTDOOR"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#fff6cc26"
+                    android:textSize="25sp"
+                    android:id="@+id/outDoorText"
+                    android:textStyle="bold" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+
+                    <ImageView
+                        android:id="@+id/thermoNetImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:src="@drawable/wall_thermometer_celsius_fahrenheit_box_368lar" />
+                    <ProgressBar
+                        android:id="@+id/vprogressbar2"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginBottom="100dp"
+                        android:progressDrawable="@drawable/verticalprogressbar"
+                        android:layout_gravity="center_horizontal" />
+
+                </FrameLayout>
+            </LinearLayout>
         </LinearLayout>
+    </FrameLayout>
 
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/switchStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mySwitch"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/mySwitch"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="Digital"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Digital"
-            android:layout_marginTop="20dp"
-            android:id="@+id/switchStatus"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentEnd="false"
-            android:layout_alignRight="@+id/mySwitch"
-            android:gravity="center_horizontal"
-            android:layout_alignLeft="@+id/mySwitch" />
-
-
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mySwitch"
-            android:checked="false"
-            android:layout_marginLeft="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/switchStatus" />
-
+    <Switch
+        android:id="@+id/mySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/switchStatus"
+        android:layout_marginLeft="20dp"
+        android:checked="false" />
 
 
 </RelativeLayout>
