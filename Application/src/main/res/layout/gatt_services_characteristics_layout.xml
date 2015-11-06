@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
 
-        />
+        android:visibility="invisible" />
 
 
     <TextView
@@ -29,7 +29,8 @@
         style="@style/MyTextViewStyle"
         android:id="@+id/date_text"
         android:layout_below="@+id/clock_text"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,7 +50,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/date_text"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="invisible"
+        android:id="@+id/layoutDigital">
 
         <LinearLayout
             android:orientation="vertical"

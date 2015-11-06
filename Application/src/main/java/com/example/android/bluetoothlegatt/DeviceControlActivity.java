@@ -22,6 +22,7 @@ package com.example.android.bluetoothlegatt;
  * communicates with {@code BluetoothLeService}, which in turn interacts with the
  * Bluetooth LE API.
  */
+
 import android.app.Activity;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
@@ -87,54 +88,22 @@ public class DeviceControlActivity extends Activity {
     private TextView switchStatus;
     private Switch mySwitch;
 
-    Timer timer;
-    Timer timer2;
-    TimerTask timer_humid;
-    TimerTask timer_temp;
-    String date="";
+    Timer timer, timer2;
+    TimerTask timer_humid, timer_temp;
+    String date = "";
     SimpleDateFormat sdf;
 
-
-    private TextView cityText;
-    private TextView condDescr;
-    private TextView temp2;
-    private TextView press;
-    private TextView fara2_text;
-    private TextView windSpeed;
-    private TextView windDeg;
-    private boolean flag=true;
+    private TextView cityText, temp2, fara2_text, hum, celcius_text, fara_text, date_text, clock_text, humid_text;
+    private boolean flag = true;
     private LinearLayout ll;
-    int count=0;
-
-    private TextView hum;
-    private ImageView imgView;
-
-
+    int count = 0;
     FileWriter writer;
-
-
-
-    private int[] RGBFrame = {0,0,0};
-    private TextView isSerial;
-    private TextView mConnectionState;
-    private TextView mDataField;
-    private SeekBar mRed,mGreen,mBlue;
-    private String mDeviceName;
+    private int[] RGBFrame = {0, 0, 0};
     private String mDeviceAddress;
-    private Button mButton;
-    private EditText mEditText;
-    private TextView celcius_text;
-    private TextView fara_text;
-    private JSONWeatherTask task;
-
     String city = "Torino,IT";
-    //private JSONWeatherTask task;
-
-    float temp=0;
-    float humid=0;
-    private TextView date_text;
-    private TextView clock_text;
-    private TextView humid_text;
+    private String mDeviceName;
+    float temp = 0;
+    float humid = 0;
     //  private ExpandableListView mGattServicesList;
     private WeatherHttpClient.BluetoothLeService mBluetoothLeService;
     private boolean mConnected = false;
@@ -168,16 +137,14 @@ public class DeviceControlActivity extends Activity {
             // Automatically connects to the device upon successful start-up initialization.
             mBluetoothLeService.connect(mDeviceAddress);
             //mBluetoothLeService.connect("54:4A:16:25:8E:76");
-           // mBluetoothLeService.connect("54:4A:16:25:A7:FF");
+            // mBluetoothLeService.connect("54:4A:16:25:A7:FF");
             Log.e(TAG, "Unable to initialize Bluetooth");
         }
-
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
             mBluetoothLeService = null;
         }
     };
-
     // Handles various events fired by the Service.
     // ACTION_GATT_CONNECTED: connected to a GATT server.
     // ACTION_GATT_DISCONNECTED: disconnected from a GATT server.
@@ -200,31 +167,27 @@ public class DeviceControlActivity extends Activity {
             } else if (WeatherHttpClient.BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Show all the supported services and characteristics on the user interface.
                 Log.d("new", WeatherHttpClient.BluetoothLeService.UUID_HM_RX_TX.toString());
-                Log.d("new","service is connected");
+                Log.d("new", "service is connected");
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (WeatherHttpClient.BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 String sensedData = intent.getStringExtra(mBluetoothLeService.EXTRA_DATA);
                 appendDataToBuffer(sensedData);
                 //displayData(sensedData);
-                Log.d("sensor", "data recieved: "+sensedData);
-
-
+                Log.d("sensor", "data recieved: " + sensedData);
             }
         }
     };
 
     private void clearUI() {
-       // mDataField.setText(R.string.no_data);
+        // mDataField.setText(R.string.no_data);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gatt_services_characteristics_layout);
-
         initSwitch();
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
@@ -233,96 +196,35 @@ public class DeviceControlActivity extends Activity {
 
         File root = Environment.getExternalStorageDirectory();
         File gpxfile = new File(root, "sensor_data.csv");
-
-
         try {
             writer = new FileWriter(gpxfile);
-            writeCsvHeader("Date","Temperature","Humidity");
+            writeCsvHeader("Date", "Temperature", "Humidity");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Sets up UI references.
-       // ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
-       // mConnectionState = (TextView) findViewById(R.id.connection_state);
-        // is serial present?
-       // isSerial = (TextView) findViewById(R.id.isSerial);
-
-        //mDataField = (TextView) findViewById(R.id.data_value);
-       // mRed = (SeekBar) findViewById(R.id.seekRed);
-       // mGreen = (SeekBar) findViewById(R.id.seekGreen);
-       // mBlue = (SeekBar) findViewById(R.id.seekBlue);
-       // mButton = (Button) findViewById(R.id.buttonLed);
-       // mEditText = (EditText) findViewById(R.id.editText);
         celcius_text = (TextView) findViewById(R.id.celcius_text);
         humid_text = (TextView) findViewById(R.id.humidity_text);
         clock_text = (TextView) findViewById(R.id.clock_text);
         fara_text = (TextView) findViewById(R.id.fara_text);
-
         date_text = (TextView) findViewById(R.id.date_text);
 
-
-
-       // readSeek(mRed,0);
-       // readSeek(mGreen,1);
-//        readSeek(mBlue,2);
-
-        //getActionBar().setTitle(mDeviceName);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
         Intent gattServiceIntent = new Intent(this, WeatherHttpClient.BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
         startTimer();
-
-
         updateTimeThread();
-
-
         cityText = (TextView) findViewById(R.id.cityText);
         temp2 = (TextView) findViewById(R.id.celcius2_text);
         hum = (TextView) findViewById(R.id.humidity2_text);
         fara2_text = (TextView) findViewById(R.id.fara2_text);
-
-
-
-        //task.execute(new String[]{city});
     }
 
-    private void initSwitch() {
-
-        switchStatus = (TextView) findViewById(R.id.switchStatus);
-        mySwitch = (Switch) findViewById(R.id.mySwitch);
-
-        //set the switch to ON
-        mySwitch.setChecked(true);
-        //attach a listener to check for changes in state
-        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-
-                if(isChecked){
-                    switchStatus.setText("Digital");
-                }else{
-                    switchStatus.setText("Analog");
-                }
-
-            }
-        });
-
-        //check the current state before we display the screen
-        if(mySwitch.isChecked()){
-            switchStatus.setText("Digital");
-        }
-        else {
-            switchStatus.setText("Analog");
-        }
-
-    }
 
     private void writeCsvHeader(String h1, String h2, String h3) throws IOException {
-        String line = String.format("%s,%s,%s\n", h1,h2,h3);
+        String line = String.format("%s,%s,%s\n", h1, h2, h3);
         writer.write(line);
     }
+
     private void writeCsvData(String date, float e, float f) throws IOException {
         String line = String.format("%s,%.0f,%.0f\n", date, e, f);
         writer.write(line);
@@ -362,11 +264,9 @@ public class DeviceControlActivity extends Activity {
             final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
         }
-
         JSONWeatherTask task;
         task = new JSONWeatherTask();
         task.execute(new String[]{city});
-
     }
 
     @Override
@@ -374,7 +274,7 @@ public class DeviceControlActivity extends Activity {
         super.onPause();
         unregisterReceiver(mGattUpdateReceiver);
         //task.cancel(true);
-        flag=false;
+        flag = false;
         stoptimertask();
     }
 
@@ -389,10 +289,8 @@ public class DeviceControlActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        flag=false;
-        //task.cancel(true);
+        flag = false;
     }
-
 
 
     private void updateConnectionState(final int resourceId) {
@@ -405,26 +303,22 @@ public class DeviceControlActivity extends Activity {
     }
 
     private List<Byte> serialbuffer = new ArrayList<Byte>();
-    private void appendDataToBuffer(String data)
-    {
-        byte[] rawArray = data.getBytes(Charset.forName("ISO-8859-1")); // Latin1
-        for(int i =0; i < rawArray.length; i++)
-            serialbuffer.add(rawArray[i]);
 
+    private void appendDataToBuffer(String data) {
+        byte[] rawArray = data.getBytes(Charset.forName("ISO-8859-1")); // Latin1
+        for (int i = 0; i < rawArray.length; i++)
+            serialbuffer.add(rawArray[i]);
         boolean finished = false;
         while (!finished) {
             // Remove until start
 
             while ((serialbuffer.size() > 0) && ((serialbuffer.get(0) & 0xFF) != 0xC0)) // UTF8: C3 80
                 serialbuffer.remove(0);
-
             if (serialbuffer.size() <= 0)
                 break;
-
             int indexofstop = -1;
 
-            for (int i = 1; i < serialbuffer.size(); i++)
-            {
+            for (int i = 1; i < serialbuffer.size(); i++) {
                 if ((serialbuffer.get(i) & 0xFF) == 0xD8) // UTF8: C3 98
                 {
                     indexofstop = i;
@@ -432,19 +326,15 @@ public class DeviceControlActivity extends Activity {
                 }
             }
 
-            if (indexofstop < 0)
-            { // No more stop bytes inside buffer
+            if (indexofstop < 0) { // No more stop bytes inside buffer
                 finished = true;
-            }
-            else
-            {
-                if (indexofstop > 2)
-                {
+            } else {
+                if (indexofstop > 2) {
                     byte[] packet = new byte[indexofstop - 1];
                     for (int i = 0; i < indexofstop - 1; i++)
-                        packet[i] = serialbuffer.get(i+1);
+                        packet[i] = serialbuffer.get(i + 1);
                     displayData(packet);
-                    for(int i = 0; i < indexofstop + 1; i++)
+                    for (int i = 0; i < indexofstop + 1; i++)
                         serialbuffer.remove(0);
                 }
             }
@@ -496,8 +386,6 @@ public class DeviceControlActivity extends Activity {
         String uuid = null;
         String unknownServiceString = getResources().getString(R.string.unknown_service);
         ArrayList<HashMap<String, String>> gattServiceData = new ArrayList<HashMap<String, String>>();
-
-
         // Loops through available GATT Services.
         for (BluetoothGattService gattService : gattServices) {
             HashMap<String, String> currentServiceData = new HashMap<String, String>();
@@ -506,12 +394,9 @@ public class DeviceControlActivity extends Activity {
                     LIST_NAME, SampleGattAttributes.lookup(uuid, unknownServiceString));
 
             // If the service exists for HM 10 Serial, say so.
-            if(SampleGattAttributes.lookup(uuid, unknownServiceString) == "HM 10 Serial")
-            {
-               // isSerial.setText("  Yes, serial connection");
-            }
-            else
-            {
+            if (SampleGattAttributes.lookup(uuid, unknownServiceString) == "HM 10 Serial") {
+                // isSerial.setText("  Yes, serial connection");
+            } else {
                 //isSerial.setText("  No, serial connection");
             }
             currentServiceData.put(LIST_UUID, uuid);
@@ -535,7 +420,7 @@ public class DeviceControlActivity extends Activity {
         return intentFilter;
     }
 
-    private void readSeek(SeekBar seekBar,final int pos) {
+    private void readSeek(SeekBar seekBar, final int pos) {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
@@ -562,16 +447,11 @@ public class DeviceControlActivity extends Activity {
         mBluetoothLeService.writeCharacteristic(characteristicTX);
         mBluetoothLeService.setCharacteristicNotification(characteristicRX, true);
     }
+
     public void humid_update_timer_funtion(View view) {
         humidity = true;
-/*
-
-        characteristicTX.setValue("H");
-        mBluetoothLeService.writeCharacteristic(characteristicTX);
-        mBluetoothLeService.setCharacteristicNotification(characteristicRX, true);
-
-*/
     }
+
     private static Integer shortSignedAtOffset(BluetoothGattCharacteristic characteristicRX, int offset) {
         Integer lowerByte = characteristicRX.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset);
         Integer upperByte = characteristicRX.getIntValue(BluetoothGattCharacteristic.FORMAT_SINT8, offset + 1); // Note: interpret MSB as signed.
@@ -585,6 +465,7 @@ public class DeviceControlActivity extends Activity {
 
         return (upperByte << 8) + lowerByte;
     }
+
     public static int[] extractCalibrationCoefficients(BluetoothGattCharacteristic characteristicRX) {
         int[] coefficients = new int[8];
 
@@ -602,15 +483,9 @@ public class DeviceControlActivity extends Activity {
 
 
     public void startTimer() {
-        //set a new Timer
         timer = new Timer();
         timer2 = new Timer();
-
-        //initialize the TimerTask's job
         initializeTimerTask();
-
-        //schedule the timer, after the first 5000ms the TimerTask will run every 1000ms
-
     }
 
     public void stoptimertask() {
@@ -627,10 +502,8 @@ public class DeviceControlActivity extends Activity {
     }
 
     public void initializeTimerTask() {
-
         timer_humid = new TimerTask() {
             public void run() {
-
                 //use a handler to run a toast that shows the current timestamp
                 handler.post(new Runnable() {
                     public void run() {
@@ -653,21 +526,13 @@ public class DeviceControlActivity extends Activity {
 
         timer_temp = new TimerTask() {
             public void run() {
-
                 //use a handler to run a toast that shows the current timestamp
                 handler.post(new Runnable() {
                     public void run() {
-                        //get the current timeStamp
                         Calendar calendar = Calendar.getInstance();
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
                         final String strDate = simpleDateFormat.format(calendar.getTime());
-
-                        //show the toast
                         int duration = Toast.LENGTH_SHORT;
-                        //Toast toast = Toast.makeText(getApplicationContext(), strDate, duration);
-                        //toast.show();
-
-
                         temp_update_timer_function(null);
                     }
                 });
@@ -676,30 +541,21 @@ public class DeviceControlActivity extends Activity {
     }
 
 
-
-
     private class JSONWeatherTask extends AsyncTask<String, Weather, Weather> {
-
         @Override
         protected Weather doInBackground(String... params) {
             Weather weather = new Weather();
-            flag=true;
-            while(flag==true && !isCancelled() ) {
-
-                while(isNetworkAvailable()==true&&flag==true && !isCancelled()) {
-
+            flag = true;
+            while (flag == true && !isCancelled()) {
+                while (isNetworkAvailable() == true && flag == true && !isCancelled()) {
                     String data = ((new WeatherHttpClient()).getWeatherData(params[0]));
                     try {
                         weather = JSONWeatherParser.getWeather(data);
-
-                        // Let's retrieve the icon
                         weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     publishProgress(weather);
-                    //return weather;
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -712,36 +568,26 @@ public class DeviceControlActivity extends Activity {
 
 
         @Override
-        protected void onProgressUpdate(Weather... weather2)
-        {
+        protected void onProgressUpdate(Weather... weather2) {
             super.onProgressUpdate(weather2);
             Weather weather = weather2[0];
-
             if (weather.iconData != null && weather.iconData.length > 0) {
                 //Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length);
                 //imgView.setImageBitmap(img);
             }
-
-             ll = (LinearLayout)findViewById(R.id.internet_data);
+            ll = (LinearLayout) findViewById(R.id.internet_data);
             ll.setVisibility(View.VISIBLE);
             //cityText.setVisibility(View.VISIBLE);
             cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
-
-
-
-
-            temp2.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) +(char) 0x00B0 + "C");
-            float farangeit2 = (Math.round((weather.temperature.getTemp() - 273.15)))*(9/5) + 32;
+            temp2.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + (char) 0x00B0 + "C");
+            float farangeit2 = (Math.round((weather.temperature.getTemp() - 273.15))) * (9 / 5) + 32;
             fara2_text.setText(String.format("%.1f\u00B0F", farangeit2));
             hum.setText("HUMIDITY: " + weather.currentCondition.getHumidity() + "%");
-
-
             count++;
             Context context = getApplicationContext();
             CharSequence text = "Times ";
             int duration = Toast.LENGTH_LONG;
-            Toast toast = Toast.makeText(context, text+ " "+count, duration);
-            //toast.show();
+            Toast toast = Toast.makeText(context, text + " " + count, duration);
         }
     }
 
@@ -753,4 +599,29 @@ public class DeviceControlActivity extends Activity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+
+    private void initSwitch() {
+        switchStatus = (TextView) findViewById(R.id.switchStatus);
+        mySwitch = (Switch) findViewById(R.id.mySwitch);
+        mySwitch.setChecked(true);
+        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if (isChecked) switchDigital();
+                else switchAnalog();
+            }
+        });
+        if (mySwitch.isChecked()) switchDigital();
+        else switchAnalog();
+    }
+
+    private void switchDigital() {
+        switchStatus.setText("Digital");
+
+    }
+
+    private void switchAnalog() {
+        switchStatus.setText("Analog");
+    }
 }
