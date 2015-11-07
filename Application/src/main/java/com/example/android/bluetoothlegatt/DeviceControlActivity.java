@@ -69,6 +69,7 @@ import java.util.UUID;
 
 import android.widget.SeekBar;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.android.bluetoothlegatt.model.Weather;
 
@@ -88,7 +89,8 @@ public class DeviceControlActivity extends Activity {
     private static final UUID CONFIG_DESCRIPTOR = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
 
     private TextView switchStatus;
-    private Switch mySwitch;
+    ToggleButton mySwitch;
+    //private Switch mySwitch;
 
     Timer timer, timer2;
     TimerTask timer_humid, timer_temp;
@@ -374,6 +376,8 @@ public class DeviceControlActivity extends Activity {
 
                 float tc = Math.round((-46.85 + (175.72 / 65536.0) * (float) t));
                 celcius_text.setText(String.format("%.1f\u00B0C", tc));
+                vProgressBar.setProgress((int)tc+30);
+
                 float farangeit = (tc) * (9 / 5) + 32;
                 fara_text.setText(String.format("%.1f\u00B0F", farangeit));
                 temp = tc;
@@ -604,6 +608,8 @@ public class DeviceControlActivity extends Activity {
             count++;
             Context context = getApplicationContext();
             CharSequence text = "Times ";
+            int temping = (int) (Math.round((weather.temperature.getTemp() - 273.15)));
+            vProgressBar2.setProgress(temping+30);
             int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(context, text + " " + count, duration);
         }
@@ -620,7 +626,7 @@ public class DeviceControlActivity extends Activity {
 
     private void initSwitch() {
         switchStatus = (TextView) findViewById(R.id.switchStatus);
-        mySwitch = (Switch) findViewById(R.id.mySwitch);
+        mySwitch = (ToggleButton) findViewById(R.id.mySwitch);
         mySwitch.setChecked(true);
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -653,49 +659,11 @@ public class DeviceControlActivity extends Activity {
         date_text.setVisibility(View.INVISIBLE);
         switchStatus.setText("Analog");
         //new asyncTaskUpdateProgress().execute();
-        vProgressBar.setProgress(50);
-        vProgressBar2.setProgress(50);
+      /*  vProgressBar.setProgress(50);
+        vProgressBar2.setProgress(50);*/
 
     }
 
 
-    /////////////
 
-
-    public class asyncTaskUpdateProgress extends AsyncTask<Void, Integer, Void> {
-
-        int progress;
-
-        @Override
-        protected void onPostExecute(Void result) {
-            // TODO Auto-generated method stub
-            //buttonStart.setClickable(true);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            // TODO Auto-generated method stub
-            progress = 0;
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            // TODO Auto-generated method stub
-            vProgressBar.setProgress(values[0]);
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            // TODO Auto-generated method stub
-            while (progress < 100) {
-                progress++;
-                Log.d(TAG, "-------------------------------------------" );
-                publishProgress(progress);
-                SystemClock.sleep(100);
-            }
-            return null;
-        }
-        /////////////
-    }
 }

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wall">
+    android:background="@drawable/abstract_blue">
 
 
     <TextView
@@ -214,8 +214,8 @@
 
                     <ImageView
                         android:id="@+id/thermoLocalImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:src="@drawable/wall_thermometer_celsius_fahrenheit_box_368lar" />
@@ -224,11 +224,12 @@
                         android:id="@+id/vprogressbar"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="70dp"
-                        android:layout_marginBottom="120dp"
+
                         android:progressDrawable="@drawable/verticalprogressbar"
-                        android:layout_gravity="center_horizontal" />
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="218dp"
+                        android:layout_marginTop="21dp"
+                        android:progress="80"  />
 
                 </FrameLayout>
 
@@ -266,7 +267,7 @@
                     <ImageView
                         android:id="@+id/thermoNetImage"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="350dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:src="@drawable/wall_thermometer_celsius_fahrenheit_box_368lar" />
@@ -274,11 +275,12 @@
                         android:id="@+id/vprogressbar2"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="5dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="70dp"
-                        android:layout_marginBottom="120dp"
+
                         android:progressDrawable="@drawable/verticalprogressbar"
-                        android:layout_gravity="center_horizontal" />
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="218dp"
+                        android:layout_marginTop="21dp"
+                        android:progress="80" />
 
                 </FrameLayout>
             </LinearLayout>
@@ -301,15 +303,22 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
-    <Switch
+    <ToggleButton
         android:id="@+id/mySwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/switchStatus"
         android:layout_marginLeft="20dp"
-        android:checked="false" />
+        android:background="@drawable/toggle_selector"
+        android:checked="false"
+        android:text=""
+        android:textOff=""
+        android:textOn=""
+         />
+
+
 
 
 </RelativeLayout>
-<!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/layout/gatt_services_characteristics_layout.xml -->
+<!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/layout/gatt_services_characteristics_layout.xml -->

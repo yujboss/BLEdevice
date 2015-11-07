@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="roygbiv">
         <item>Red</item>
         <item>Green</item>
         <item>Blue</item>
     </string-array>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.2/res/values/values.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.2/res/values/values.xml -->
     <eat-comment/>
     <color name="cardview_dark_background">#FF202020</color>
     <color name="cardview_light_background">#FFFAFAFA</color>
@@ -17,7 +17,7 @@
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/template-dimens.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/template-dimens.xml -->
     <eat-comment/>
     <dimen name="horizontal_page_margin">@dimen/margin_medium</dimen>
     <dimen name="margin_huge">64dp</dimen>
@@ -26,14 +26,14 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_tiny">4dp</dimen>
     <dimen name="vertical_page_margin">@dimen/margin_medium</dimen>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="Enter_Humid">---</string>
     <string name="Enter_value">---</string>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/base-strings.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/base-strings.xml -->
     <eat-comment/>
     <string name="app_name">BLESensor</string>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="ble_not_supported">BLE is not supported</string>
     <string name="blue_slide">Blue</string>
@@ -42,7 +42,7 @@
     <string name="disconnected">Disconnected</string>
     <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
     <string name="green_slide">Green</string>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/base-strings.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/base-strings.xml -->
     <eat-comment/>
     <string name="intro_message">
         <![CDATA[
@@ -54,7 +54,7 @@
         
         ]]>
     </string>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="is_serial">Serial Present:</string>
     <string name="label_data">Data:</string>
@@ -70,10 +70,10 @@
     <string name="unknown_characteristic">Unknown characteristic</string>
     <string name="unknown_device">Unknown device</string>
     <string name="unknown_service">Unknown service</string>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/template-styles.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/template-styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="Theme.Sample"/>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/style.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/style.xml -->
     <eat-comment/>
     <style name="AudioFileInfoOverlayText">
         <item name="android:paddingLeft">4px</item>
@@ -85,7 +85,7 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">1</item>
     </style>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.2/res/values/values.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.2/res/values/values.xml -->
     <eat-comment/>
     <style name="CardView">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
@@ -101,7 +101,7 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/style.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/style.xml -->
     <eat-comment/>
     <style name="MyTextViewStyle">
         <item name="android:textColor">#fff</item>
@@ -121,7 +121,7 @@
         <item name="android:shadowDy">-3</item>
         <item name="android:shadowRadius">1.5</item>
     </style>
-    <!-- From: file:/C:/Users/aliyev/AndroidStudioProjects/BLEdevice/Application/src/main/res/values/template-styles.xml -->
+    <!-- From: file:/home/yujboss/AndroidApps/kh/Application/src/main/res/values/template-styles.xml -->
     <eat-comment/>
     <style name="Theme.Base" parent="android:Theme.Light"/>
     <style name="Theme.Sample" parent="Theme.Base"/>

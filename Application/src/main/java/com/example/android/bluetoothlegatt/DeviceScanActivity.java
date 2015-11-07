@@ -80,7 +80,6 @@ public class DeviceScanActivity extends ListActivity {
 
 
 
-
     }
 
     @Override
