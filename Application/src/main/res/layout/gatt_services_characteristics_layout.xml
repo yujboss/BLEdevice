@@ -216,7 +216,7 @@
                         android:id="@+id/thermoLocalImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:src="@drawable/wall_thermometer_celsius_fahrenheit_box_368lar" />
 
@@ -226,7 +226,7 @@
                         android:layout_width="5dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="70dp"
-                        android:layout_marginBottom="100dp"
+                        android:layout_marginBottom="120dp"
                         android:progressDrawable="@drawable/verticalprogressbar"
                         android:layout_gravity="center_horizontal" />
 
@@ -267,7 +267,7 @@
                         android:id="@+id/thermoNetImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="1"
                         android:src="@drawable/wall_thermometer_celsius_fahrenheit_box_368lar" />
                     <ProgressBar
@@ -276,7 +276,7 @@
                         android:layout_width="5dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="70dp"
-                        android:layout_marginBottom="100dp"
+                        android:layout_marginBottom="120dp"
                         android:progressDrawable="@drawable/verticalprogressbar"
                         android:layout_gravity="center_horizontal" />
 

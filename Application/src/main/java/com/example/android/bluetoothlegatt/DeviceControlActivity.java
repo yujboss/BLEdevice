@@ -98,6 +98,7 @@ public class DeviceControlActivity extends Activity {
     private LinearLayout layoutAnalog;
     private TextView inDoor, outDoor;
     private ProgressBar vProgressBar;
+    private ProgressBar vProgressBar2;
 // ///////
 
     private TextView cityText, temp2, fara2_text, hum, celcius_text, fara_text, date_text, clock_text, humid_text;
@@ -201,8 +202,9 @@ public class DeviceControlActivity extends Activity {
         inDoor = (TextView) findViewById(R.id.inDoorText);
         outDoor = (TextView) findViewById(R.id.outDoorText);
         vProgressBar = (ProgressBar) findViewById(R.id.vprogressbar);
+        vProgressBar2 = (ProgressBar) findViewById(R.id.vprogressbar2);
         ////////////////////////////////////////////////////////////////////
-        initSwitch();
+
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
@@ -231,6 +233,8 @@ public class DeviceControlActivity extends Activity {
         temp2 = (TextView) findViewById(R.id.celcius2_text);
         hum = (TextView) findViewById(R.id.humidity2_text);
         fara2_text = (TextView) findViewById(R.id.fara2_text);
+
+        initSwitch();
     }
 
 
@@ -648,7 +652,10 @@ public class DeviceControlActivity extends Activity {
         clock_text.setVisibility(View.INVISIBLE);
         date_text.setVisibility(View.INVISIBLE);
         switchStatus.setText("Analog");
-        new asyncTaskUpdateProgress().execute();
+        //new asyncTaskUpdateProgress().execute();
+        vProgressBar.setProgress(50);
+        vProgressBar2.setProgress(50);
+
     }
 
 
@@ -679,9 +686,11 @@ public class DeviceControlActivity extends Activity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
+
             // TODO Auto-generated method stub
             while (progress < 100) {
                 progress++;
+                Log.d(TAG, "-------------------------------------------" );
                 publishProgress(progress);
                 SystemClock.sleep(100);
             }
