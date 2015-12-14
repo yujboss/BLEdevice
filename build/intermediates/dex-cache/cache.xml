@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.2\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b017100da14f9c158c9f5f2f508333c224b24a7c">
-        <dex dex="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\pre-dexed\debug\classes-d6a04d93f0d69583f9383a3043e2c8954147692e.jar" />
-    </item>
-    <item
-        jar="C:\Users\aliyev\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.2\support-annotations-21.0.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
-        <dex dex="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\pre-dexed\debug\support-annotations-21.0.2-49cc8a35f4dca91090d1bdd25494f3e1c14f5ae4.jar" />
-    </item>
-    <item
-        jar="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.2\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="61965ae058916e6a57950dd61b0164dc866af19a">
-        <dex dex="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\pre-dexed\debug\classes-556e7b7f826f1aa8d034d62329dd76331cf7d446.jar" />
-    </item>
-    <item
-        jar="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
-        <dex dex="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\pre-dexed\debug\classes-59234cf302d14253432e74c4ece0c8bd6dbf358f.jar" />
-    </item>
-    <item
-        jar="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\exploded-aar\com.android.support\support-v13\21.0.2\jars\libs\internal_impl-21.0.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9346da9fb778af9e451211bbc3541daced174ba7">
-        <dex dex="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-5726ab57242f71ae30a9273d8fbb101c641e938a.jar" />
-    </item>
-    <item
-        jar="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\jars\libs\internal_impl-21.0.2.jar"
+        jar="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/jars/libs/internal_impl-21.0.2.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
-        <dex dex="C:\Users\aliyev\AndroidStudioProjects\BLEdevice\Application\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-261038e2258bc0f1d1b151be87cfbffd5a6dc16d.jar" />
+        <dex dex="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-e46221c0d17d060a02756594b04b348372beb384.jar" />
+    </item>
+    <item
+        jar="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.2/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b017100da14f9c158c9f5f2f508333c224b24a7c">
+        <dex dex="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/pre-dexed/debug/classes-a4e2b6b5b615682c4c071b311c245ab9a6a99e73.jar" />
+    </item>
+    <item
+        jar="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.2/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="61965ae058916e6a57950dd61b0164dc866af19a">
+        <dex dex="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/pre-dexed/debug/classes-5621cdf4efe7e67467b0128a73405c698e21e5b9.jar" />
+    </item>
+    <item
+        jar="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.2/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
+        <dex dex="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/pre-dexed/debug/classes-d009b50053f011a7a6aa87de46cd590b4dcd0b27.jar" />
+    </item>
+    <item
+        jar="/home/yujboss/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.2/support-annotations-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
+        <dex dex="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/pre-dexed/debug/support-annotations-21.0.2-31350ef160174fe346715a0c03453fecc8bc9401.jar" />
+    </item>
+    <item
+        jar="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/exploded-aar/com.android.support/support-v13/21.0.2/jars/libs/internal_impl-21.0.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9346da9fb778af9e451211bbc3541daced174ba7">
+        <dex dex="/home/yujboss/AndroidApps/BLEdevice/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.2-439929ea49f1c2e1d51ba077fd5b8a91e51a4dd7.jar" />
     </item>
 
 </items>

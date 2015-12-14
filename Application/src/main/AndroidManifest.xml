@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DeviceControlActivity"/>
-        <service android:name=".WeatherHttpClient$BluetoothLeService" android:enabled="true"/>
+        <service android:name=".BluetoothLeService" android:enabled="true"/>
     </application>
 
 </manifest>

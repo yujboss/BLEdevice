@@ -58,7 +58,7 @@
         <activity android:name="com.example.android.bluetoothlegatt.DeviceControlActivity" />
 
         <service
-            android:name="com.example.android.bluetoothlegatt.WeatherHttpClient$BluetoothLeService"
+            android:name="com.example.android.bluetoothlegatt.BluetoothLeService"
             android:enabled="true" />
     </application>
 

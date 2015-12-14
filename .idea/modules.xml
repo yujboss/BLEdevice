@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Application/Application.iml" filepath="$PROJECT_DIR$/Application/Application.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kh.iml" filepath="$PROJECT_DIR$/kh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BLEdevice.iml" filepath="$PROJECT_DIR$/BLEdevice.iml" />
     </modules>
   </component>
 </project>
