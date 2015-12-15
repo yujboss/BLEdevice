@@ -38,7 +38,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-
+// 15.12.2015 Created by Khurshid Aliev
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.
  */

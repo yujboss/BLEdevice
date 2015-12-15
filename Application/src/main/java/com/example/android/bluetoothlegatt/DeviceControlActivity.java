@@ -15,6 +15,9 @@
  */
 
 package com.example.android.bluetoothlegatt;
+//
+// Created 15.12.2015 Khurshid Aliev
+//
 
 /**
  * For a given BLE device, this Activity provides the user interface to connect, display data,
