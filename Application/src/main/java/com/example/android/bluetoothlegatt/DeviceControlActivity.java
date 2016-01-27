@@ -84,6 +84,7 @@ public class DeviceControlActivity extends Activity {
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
     private static final UUID CONFIG_DESCRIPTOR = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
+    long BLUETOOTH_TIMER = 15000;
     private TextView switchStatus,inDoor, outDoor;
     private TextView cityText, temp2, fara2_text, hum, celcius_text, fara_text, date_text, clock_text, humid_text;
     private ProgressBar vProgressBar, vProgressBar2;
@@ -122,10 +123,13 @@ public class DeviceControlActivity extends Activity {
             // Automatically connects to the device upon successful start-up initialization.
             mBluetoothLeService.connect(mDeviceAddress);
             Log.e(TAG, "Unable to initialize Bluetooth");
+
         }
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
+            mBluetoothLeService.disconnect();
             mBluetoothLeService = null;
+
         }
     };
     // Handles various events fired by the Service.
@@ -149,13 +153,14 @@ public class DeviceControlActivity extends Activity {
                 clearUI();
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 // Show all the supported services and characteristics on the user interface.
-                Log.d("new", BluetoothLeService.UUID_HM_RX_TX.toString());
+                //Log.d("new", BluetoothLeService.UUID_HM_RX_TX.toString());
                 Log.d("new", "service is connected");
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 String sensedData = intent.getStringExtra(mBluetoothLeService.EXTRA_DATA);
                 appendDataToBuffer(sensedData);
-                Log.d("sensor", "data recieved: " + sensedData);
+                Log.d("timer", "Data recieved: " + sensedData);
+                stop();
             }
         }
     };
@@ -181,6 +186,9 @@ public class DeviceControlActivity extends Activity {
 
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
+        BLUETOOTH_TIMER=intent.getIntExtra("timer", 0);
+        inDoor.setText(mDeviceName);
+        ((TextView)  findViewById(R.id.appname_text)).setText(mDeviceName);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
         sdf = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 
@@ -197,8 +205,7 @@ public class DeviceControlActivity extends Activity {
         clock_text = (TextView) findViewById(R.id.clock_text);
         fara_text = (TextView) findViewById(R.id.fara_text);
         date_text = (TextView) findViewById(R.id.date_text);
-        Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
-        bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+        gattServiceIntent = new Intent(this, BluetoothLeService.class);
         startTimer();
         updateTimeThread();
         cityText = (TextView) findViewById(R.id.cityText);
@@ -206,6 +213,24 @@ public class DeviceControlActivity extends Activity {
         hum = (TextView) findViewById(R.id.humidity2_text);
         fara2_text = (TextView) findViewById(R.id.fara2_text);
         initSwitch();
+        timerBluetooth.schedule(timerTask, 0, BLUETOOTH_TIMER*1000);
+        timer.schedule(timer_humid, 5000, 15000); //
+        timer2.schedule(timer_temp, 1000, 15000); //timer
+        Log.d("timer", "timer is set to" + BLUETOOTH_TIMER * 1000);
+
+    }
+    public void start() {
+        // mContext is defined upper in code, I think it is not necessary to explain what is it
+        isBound=bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+        startService(gattServiceIntent);
+        Log.d("timer", "Service Started");
+    }
+    Intent gattServiceIntent;
+    public void stop() {
+
+        stopService(gattServiceIntent);
+        if (isBound) unbindService(mServiceConnection);
+        Log.d("timer", "Service Stopped");
     }
 
 
@@ -265,11 +290,12 @@ public class DeviceControlActivity extends Activity {
         flag = false;
         stoptimertask();
     }
-
+    boolean isBound = false;
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindService(mServiceConnection);
+        //if (isBound&&mServiceConnection!=null) unbindService(mServiceConnection);
+        stoptimertask();
         mBluetoothLeService = null;
         try {
             writer.flush();
@@ -380,9 +406,9 @@ public class DeviceControlActivity extends Activity {
             // get characteristic when UUID matches RX/TX UUID
             characteristicTX = gattService.getCharacteristic(BluetoothLeService.UUID_HM_RX_TX);
             characteristicRX = gattService.getCharacteristic(BluetoothLeService.UUID_HM_RX_TX);
+            if(characteristicTX!=null)     temp_update_timer_function(null);
         }
-        timer.schedule(timer_humid, 5000, 15000); //
-        timer2.schedule(timer_temp, 1000, 15000); //
+
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {
@@ -417,10 +443,12 @@ public class DeviceControlActivity extends Activity {
         Integer upperByte = characteristicRX.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, offset + 1); // Note: interpret MSB as unsigned.
         return (upperByte << 8) + lowerByte;
     }
-
+    Timer timerBluetooth;
 
     public void startTimer() {
         timer = new Timer();
+        timerBluetooth = new Timer();
+
         timer2 = new Timer();
         initializeTimerTask();
     }
@@ -435,8 +463,13 @@ public class DeviceControlActivity extends Activity {
             timer2.cancel();
             timer2 = null;
         }
-    }
+        if (timerTask != null) {
+            timerTask.cancel();
+            timerTask = null;
+        }
 
+    }
+    TimerTask timerTask;
     public void initializeTimerTask() {
         timer_humid = new TimerTask() {
             public void run() {
@@ -451,6 +484,16 @@ public class DeviceControlActivity extends Activity {
                 });
             }
         };
+        timerTask = new TimerTask() {
+            public void run() {
+                handler.post(new Runnable() {
+                    public void run() {
+                        start();
+                      // Log.d("timer", "starting");
+                    }
+                });
+            }
+        };
 
         timer_temp = new TimerTask() {
             public void run() {
@@ -460,11 +503,12 @@ public class DeviceControlActivity extends Activity {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
                         final String strDate = simpleDateFormat.format(calendar.getTime());
                         int duration = Toast.LENGTH_SHORT;
-                        temp_update_timer_function(null);
+
                     }
                 });
             }
         };
+
     }
 
 
@@ -478,7 +522,7 @@ public class DeviceControlActivity extends Activity {
                     String data = ((new WeatherHttpClient()).getWeatherData(params[0]));
                     try {
                         weather = JSONWeatherParser.getWeather(data);
-                        weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+                        //weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -498,23 +542,24 @@ public class DeviceControlActivity extends Activity {
         protected void onProgressUpdate(Weather... weather2) {
             super.onProgressUpdate(weather2);
             Weather weather = weather2[0];
-            if (weather.iconData != null && weather.iconData.length > 0) {
+            if (weather.location!=null && weather.iconData != null && weather.iconData.length > 0) {
+
+                ll = (LinearLayout) findViewById(R.id.internet_data);
+                ll.setVisibility(View.VISIBLE);
+                //cityText.setVisibility(View.VISIBLE);
+                cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
+                temp2.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + (char) 0x00B0 + "C");
+                float farangeit2 = (Math.round((weather.temperature.getTemp() - 273.15))) * (9 / 5) + 32;
+                fara2_text.setText(String.format("%.1f\u00B0F", farangeit2));
+                hum.setText("HUMIDITY: " + weather.currentCondition.getHumidity() + "%");
+                count++;
+                Context context = getApplicationContext();
+                CharSequence text = "Times ";
+                int temping = (int) (Math.round((weather.temperature.getTemp() - 273.15)));
+                vProgressBar2.setProgress(temping+30);
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(context, text + " " + count, duration);
             }
-            ll = (LinearLayout) findViewById(R.id.internet_data);
-            ll.setVisibility(View.VISIBLE);
-            //cityText.setVisibility(View.VISIBLE);
-            cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
-            temp2.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + (char) 0x00B0 + "C");
-            float farangeit2 = (Math.round((weather.temperature.getTemp() - 273.15))) * (9 / 5) + 32;
-            fara2_text.setText(String.format("%.1f\u00B0F", farangeit2));
-            hum.setText("HUMIDITY: " + weather.currentCondition.getHumidity() + "%");
-            count++;
-            Context context = getApplicationContext();
-            CharSequence text = "Times ";
-            int temping = (int) (Math.round((weather.temperature.getTemp() - 273.15)));
-            vProgressBar2.setProgress(temping+30);
-            int duration = Toast.LENGTH_LONG;
-            Toast toast = Toast.makeText(context, text + " " + count, duration);
         }
     }
 

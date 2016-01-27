@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip
+            android:clipOrientation="vertical"
+            android:gravity="bottom">
+            <shape>
+                <corners android:radius="50dip"/>
+                <solid android:color="#FF0000"/>
+                <stroke
+                    android:width="1dp"
+                    android:color="#000000" />
+            </shape>
+            <shape>
+                <solid android:color="#FF0000"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list><!-- From: file:/home/yujboss/AndroidApps/BLEdevice/Application/src/main/res/drawable-xxxhdpi/verticalprogressbar.xml -->

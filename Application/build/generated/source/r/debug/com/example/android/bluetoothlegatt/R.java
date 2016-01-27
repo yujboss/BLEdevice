@@ -9,7 +9,10 @@ package com.example.android.bluetoothlegatt;
 
 public final class R {
     public static final class array {
-        public static final int roygbiv=0x7f070000;
+        public static final int WheelArrayConstellation=0x7f070000;
+        public static final int WheelArrayDefault=0x7f070002;
+        public static final int WheelArrayZodiac=0x7f070001;
+        public static final int roygbiv=0x7f070003;
     }
     public static final class attr {
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
@@ -20,7 +23,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int cardBackgroundColor=0x7f010000;
+        public static final int cardBackgroundColor=0x7f01000a;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -30,7 +33,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int cardCornerRadius=0x7f010001;
+        public static final int cardCornerRadius=0x7f01000b;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -40,7 +43,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int cardElevation=0x7f010002;
+        public static final int cardElevation=0x7f01000c;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -50,7 +53,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int cardMaxElevation=0x7f010003;
+        public static final int cardMaxElevation=0x7f01000d;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -58,7 +61,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int cardPreventCornerOverlap=0x7f010005;
+        public static final int cardPreventCornerOverlap=0x7f01000f;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -66,7 +69,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int cardUseCompatPadding=0x7f010004;
+        public static final int cardUseCompatPadding=0x7f01000e;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -76,7 +79,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int contentPadding=0x7f010006;
+        public static final int contentPadding=0x7f010010;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -86,7 +89,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int contentPaddingBottom=0x7f01000a;
+        public static final int contentPaddingBottom=0x7f010014;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -96,7 +99,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int contentPaddingLeft=0x7f010007;
+        public static final int contentPaddingLeft=0x7f010011;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -106,7 +109,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int contentPaddingRight=0x7f010008;
+        public static final int contentPaddingRight=0x7f010012;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -116,84 +119,187 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int contentPaddingTop=0x7f010009;
+        public static final int contentPaddingTop=0x7f010013;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int wheel_data=0x7f010000;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int wheel_direction=0x7f010002;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int wheel_item_count=0x7f010005;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int wheel_item_index=0x7f010003;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int wheel_item_same_size=0x7f010004;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int wheel_item_space=0x7f010006;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>straight</code></td><td>0</td><td></td></tr>
+<tr><td><code>curved</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int wheel_style=0x7f010001;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int wheel_text_color=0x7f010008;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int wheel_text_color_current=0x7f010009;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int wheel_text_size=0x7f010007;
     }
     public static final class color {
-        public static final int cardview_dark_background=0x7f080000;
-        public static final int cardview_light_background=0x7f080001;
-        public static final int cardview_shadow_end_color=0x7f080002;
-        public static final int cardview_shadow_start_color=0x7f080003;
+        public static final int ColorButtonDisable=0x7f080000;
+        public static final int ColorButtonPressed=0x7f080001;
+        public static final int ColorButtonRelease=0x7f080002;
+        public static final int cardview_dark_background=0x7f080003;
+        public static final int cardview_light_background=0x7f080004;
+        public static final int cardview_shadow_end_color=0x7f080005;
+        public static final int cardview_shadow_start_color=0x7f080006;
     }
     public static final class dimen {
-        public static final int cardview_compat_inset_shadow=0x7f050002;
-        public static final int cardview_default_elevation=0x7f050003;
-        public static final int cardview_default_radius=0x7f050004;
+        public static final int WheelItemSpace=0x7f050002;
+        public static final int WheelLabelTextSize=0x7f050003;
+        public static final int WheelPadding=0x7f050004;
+        public static final int WheelTextSize=0x7f050005;
+        public static final int cardview_compat_inset_shadow=0x7f050006;
+        public static final int cardview_default_elevation=0x7f050007;
+        public static final int cardview_default_radius=0x7f050008;
         public static final int horizontal_page_margin=0x7f050000;
-        public static final int margin_huge=0x7f050005;
-        public static final int margin_large=0x7f050006;
-        public static final int margin_medium=0x7f050007;
-        public static final int margin_small=0x7f050008;
-        public static final int margin_tiny=0x7f050009;
+        public static final int margin_huge=0x7f050009;
+        public static final int margin_large=0x7f05000a;
+        public static final int margin_medium=0x7f05000b;
+        public static final int margin_small=0x7f05000c;
+        public static final int margin_tiny=0x7f05000d;
         public static final int vertical_page_margin=0x7f050001;
     }
     public static final class drawable {
         public static final int abstract_blue=0x7f020000;
-        public static final int hum_temp=0x7f020001;
-        public static final int hum_temp_1=0x7f020002;
-        public static final int humidity=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int tile=0x7f020005;
-        public static final int toggle_off=0x7f020006;
-        public static final int toggle_on=0x7f020007;
-        public static final int toggle_selector=0x7f020008;
-        public static final int unnamed=0x7f020009;
-        public static final int verticalprogressbar=0x7f02000a;
-        public static final int wall=0x7f02000b;
-        public static final int wall_thermometer_celsius_fahrenheit_box_368lar=0x7f02000c;
-        public static final int wallhalf=0x7f02000d;
+        public static final int bg_btn=0x7f020001;
+        public static final int hum_temp=0x7f020002;
+        public static final int hum_temp_1=0x7f020003;
+        public static final int humidity=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int tile=0x7f020006;
+        public static final int toggle_off=0x7f020007;
+        public static final int toggle_on=0x7f020008;
+        public static final int toggle_selector=0x7f020009;
+        public static final int unnamed=0x7f02000a;
+        public static final int untitled=0x7f02000b;
+        public static final int verticalprogressbar=0x7f02000c;
+        public static final int wall=0x7f02000d;
+        public static final int wall_thermometer_celsius_fahrenheit_box_368lar=0x7f02000e;
+        public static final int wallhalf=0x7f02000f;
     }
     public static final class id {
-        public static final int Hum_button=0x7f0b0006;
-        public static final int appname2_text=0x7f0b0014;
-        public static final int appname_text=0x7f0b000f;
-        public static final int bluetooth_data=0x7f0b000e;
-        public static final int bluetooth_data_analog=0x7f0b0019;
-        public static final int buttonLed=0x7f0b0004;
-        public static final int celcius2_text=0x7f0b0015;
-        public static final int celcius_text=0x7f0b0010;
-        public static final int cityText=0x7f0b000b;
-        public static final int clock_text=0x7f0b0009;
-        public static final int connection_state=0x7f0b0001;
-        public static final int data_value=0x7f0b0002;
-        public static final int date_text=0x7f0b000a;
-        public static final int device_address=0x7f0b0000;
-        public static final int device_name=0x7f0b0023;
-        public static final int fara2_text=0x7f0b0016;
-        public static final int fara_text=0x7f0b0011;
-        public static final int frameLayout1=0x7f0b000c;
-        public static final int humidity2_text=0x7f0b0017;
-        public static final int humidity_text=0x7f0b0012;
-        public static final int imageButtonHumidity=0x7f0b0008;
-        public static final int inDoorText=0x7f0b001a;
-        public static final int internet_data=0x7f0b0013;
-        public static final int internet_data_analog=0x7f0b001d;
-        public static final int isSerial=0x7f0b0003;
-        public static final int layoutAnalog=0x7f0b0018;
-        public static final int layoutDigital=0x7f0b000d;
-        public static final int menu_connect=0x7f0b0025;
-        public static final int menu_disconnect=0x7f0b0026;
-        public static final int menu_refresh=0x7f0b0024;
-        public static final int menu_scan=0x7f0b0027;
-        public static final int menu_stop=0x7f0b0028;
-        public static final int mySwitch=0x7f0b0022;
-        public static final int outDoorText=0x7f0b001e;
-        public static final int switchStatus=0x7f0b0021;
-        public static final int textView5=0x7f0b0005;
-        public static final int textView6=0x7f0b0007;
-        public static final int thermoLocalImage=0x7f0b001b;
-        public static final int thermoNetImage=0x7f0b001f;
-        public static final int vprogressbar=0x7f0b001c;
-        public static final int vprogressbar2=0x7f0b0020;
+        public static final int Hum_button=0x7f0b000a;
+        public static final int appname2_text=0x7f0b0018;
+        public static final int appname_text=0x7f0b0013;
+        public static final int bluetooth_data=0x7f0b0012;
+        public static final int bluetooth_data_analog=0x7f0b001d;
+        public static final int buttonLed=0x7f0b0008;
+        public static final int celcius2_text=0x7f0b0019;
+        public static final int celcius_text=0x7f0b0014;
+        public static final int cityText=0x7f0b000f;
+        public static final int clock_text=0x7f0b000d;
+        public static final int connection_state=0x7f0b0005;
+        public static final int curved=0x7f0b0000;
+        public static final int data_value=0x7f0b0006;
+        public static final int date_text=0x7f0b000e;
+        public static final int device_address=0x7f0b0004;
+        public static final int device_name=0x7f0b0027;
+        public static final int fara2_text=0x7f0b001a;
+        public static final int fara_text=0x7f0b0015;
+        public static final int frameLayout1=0x7f0b0010;
+        public static final int horizontal=0x7f0b0002;
+        public static final int humidity2_text=0x7f0b001b;
+        public static final int humidity_text=0x7f0b0016;
+        public static final int imageButtonHumidity=0x7f0b000c;
+        public static final int inDoorText=0x7f0b001e;
+        public static final int internet_data=0x7f0b0017;
+        public static final int internet_data_analog=0x7f0b0021;
+        public static final int isSerial=0x7f0b0007;
+        public static final int layoutAnalog=0x7f0b001c;
+        public static final int layoutDigital=0x7f0b0011;
+        public static final int menu_connect=0x7f0b002b;
+        public static final int menu_disconnect=0x7f0b002c;
+        public static final int menu_refresh=0x7f0b0029;
+        public static final int menu_scan=0x7f0b002d;
+        public static final int menu_stop=0x7f0b002e;
+        public static final int mySwitch=0x7f0b0026;
+        public static final int outDoorText=0x7f0b0022;
+        public static final int straight=0x7f0b0001;
+        public static final int switchStatus=0x7f0b0025;
+        public static final int textView5=0x7f0b0009;
+        public static final int textView6=0x7f0b000b;
+        public static final int thermoLocalImage=0x7f0b001f;
+        public static final int thermoNetImage=0x7f0b0023;
+        public static final int timer=0x7f0b002a;
+        public static final int vertical=0x7f0b0003;
+        public static final int view=0x7f0b0028;
+        public static final int vprogressbar=0x7f0b0020;
+        public static final int vprogressbar2=0x7f0b0024;
     }
     public static final class layout {
         public static final int actionbar_indeterminate_progress=0x7f040000;
@@ -201,6 +307,7 @@ containing a value of this type.
         public static final int gatt_services_characteristics_layout=0x7f040002;
         public static final int listitem_device=0x7f040003;
         public static final int main=0x7f040004;
+        public static final int wheel_dialog=0x7f040005;
     }
     public static final class menu {
         public static final int gatt_services=0x7f0a0000;
@@ -251,6 +358,187 @@ containing a value of this type.
         public static final int Widget_SampleMessageTile=0x7f06000b;
     }
     public static final class styleable {
+        /** Attributes that can be used with a AbstractWheelPicker.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_data com.example.android.bluetoothlegatt:wheel_data}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_direction com.example.android.bluetoothlegatt:wheel_direction}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_item_count com.example.android.bluetoothlegatt:wheel_item_count}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_item_index com.example.android.bluetoothlegatt:wheel_item_index}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_item_same_size com.example.android.bluetoothlegatt:wheel_item_same_size}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_item_space com.example.android.bluetoothlegatt:wheel_item_space}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_style com.example.android.bluetoothlegatt:wheel_style}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_text_color com.example.android.bluetoothlegatt:wheel_text_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_text_color_current com.example.android.bluetoothlegatt:wheel_text_color_current}</code></td><td></td></tr>
+           <tr><td><code>{@link #AbstractWheelPicker_wheel_text_size com.example.android.bluetoothlegatt:wheel_text_size}</code></td><td></td></tr>
+           </table>
+           @see #AbstractWheelPicker_wheel_data
+           @see #AbstractWheelPicker_wheel_direction
+           @see #AbstractWheelPicker_wheel_item_count
+           @see #AbstractWheelPicker_wheel_item_index
+           @see #AbstractWheelPicker_wheel_item_same_size
+           @see #AbstractWheelPicker_wheel_item_space
+           @see #AbstractWheelPicker_wheel_style
+           @see #AbstractWheelPicker_wheel_text_color
+           @see #AbstractWheelPicker_wheel_text_color_current
+           @see #AbstractWheelPicker_wheel_text_size
+         */
+        public static final int[] AbstractWheelPicker = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_data}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.example.android.bluetoothlegatt:wheel_data
+        */
+        public static final int AbstractWheelPicker_wheel_data = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_direction}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.example.android.bluetoothlegatt:wheel_direction
+        */
+        public static final int AbstractWheelPicker_wheel_direction = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_item_count}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.android.bluetoothlegatt:wheel_item_count
+        */
+        public static final int AbstractWheelPicker_wheel_item_count = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_item_index}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.android.bluetoothlegatt:wheel_item_index
+        */
+        public static final int AbstractWheelPicker_wheel_item_index = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_item_same_size}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.android.bluetoothlegatt:wheel_item_same_size
+        */
+        public static final int AbstractWheelPicker_wheel_item_same_size = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_item_space}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.android.bluetoothlegatt:wheel_item_space
+        */
+        public static final int AbstractWheelPicker_wheel_item_space = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_style}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>straight</code></td><td>0</td><td></td></tr>
+<tr><td><code>curved</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.example.android.bluetoothlegatt:wheel_style
+        */
+        public static final int AbstractWheelPicker_wheel_style = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_text_color}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.android.bluetoothlegatt:wheel_text_color
+        */
+        public static final int AbstractWheelPicker_wheel_text_color = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_text_color_current}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.android.bluetoothlegatt:wheel_text_color_current
+        */
+        public static final int AbstractWheelPicker_wheel_text_color_current = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#wheel_text_size}
+          attribute's value can be found in the {@link #AbstractWheelPicker} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.android.bluetoothlegatt:wheel_text_size
+        */
+        public static final int AbstractWheelPicker_wheel_text_size = 7;
         /** Attributes that can be used with a CardView.
            <p>Includes the following attributes:</p>
            <table>
@@ -282,9 +570,9 @@ containing a value of this type.
            @see #CardView_contentPaddingTop
          */
         public static final int[] CardView = {
-            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
-            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
-            0x7f010008, 0x7f010009, 0x7f01000a
+            0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d,
+            0x7f01000e, 0x7f01000f, 0x7f010010, 0x7f010011,
+            0x7f010012, 0x7f010013, 0x7f010014
         };
         /**
           <p>This symbol is the offset where the {@link com.example.android.bluetoothlegatt.R.attr#cardBackgroundColor}

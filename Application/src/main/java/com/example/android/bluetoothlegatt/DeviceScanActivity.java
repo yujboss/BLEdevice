@@ -17,26 +17,40 @@
 package com.example.android.bluetoothlegatt;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aigestudio.wheelpicker.core.AbstractWheelDecor;
+import com.aigestudio.wheelpicker.core.AbstractWheelPicker;
+import com.aigestudio.wheelpicker.view.WheelCurvedPicker;
+
 import java.util.ArrayList;
+import java.util.List;
 
 // 15.12.2015 Created by Khurshid Aliev
 /**
@@ -47,7 +61,7 @@ public class DeviceScanActivity extends ListActivity {
     private BluetoothAdapter mBluetoothAdapter;
     private boolean mScanning;
     private Handler mHandler;
-
+    int currentFilterInt=10;
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
@@ -58,6 +72,22 @@ public class DeviceScanActivity extends ListActivity {
         getActionBar().setTitle(R.string.title_devices);
         mHandler = new Handler();
 
+
+
+        ListView lv = getListView();
+
+        lv.setCacheColorHint(0);
+        lv.setBackgroundColor(Color.WHITE);
+        ImageView imgView = new ImageView(getApplicationContext());
+        imgView.setAlpha(100);
+        /*RelativeLayout.LayoutParams layoutParams =
+                (RelativeLayout.LayoutParams)imgView.getLayoutParams();
+        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);*/
+        imgView.setScaleType(ImageView.ScaleType.CENTER);
+        //imgView.setLayoutParams(layoutParams);
+        imgView.setImageResource(R.drawable.untitled);
+        lv.addFooterView(imgView);
+        //getListView().setBackgroundResource(R.drawable.untitled);
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
@@ -105,8 +135,61 @@ public class DeviceScanActivity extends ListActivity {
             case R.id.menu_stop:
                 scanLeDevice(false);
                 break;
+            case R.id.timer:
+                showTimer();
+                break;
         }
         return true;
+    }
+
+    private void showTimer() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View convertView = (View) inflater.inflate(R.layout.wheel_dialog, null);
+        alertDialog.setView(convertView);
+        alertDialog.setTitle("Set Timer");
+        final WheelCurvedPicker wheelCurvedPicker = (WheelCurvedPicker)convertView.findViewById(R.id.view);
+        wheelCurvedPicker.setTextSize(50);
+        wheelCurvedPicker.setWheelDecor(true, new AbstractWheelDecor() {
+            @Override
+            public void drawDecor(Canvas canvas, Rect rectLast, Rect rectNext, Paint paint) {
+                canvas.drawColor(0x88895463);
+            }
+        });
+        List<String> data = new ArrayList<>();
+        for(int i=1;i<10;i++){
+            int nums=i*10;
+            data.add(" "+nums);
+        }
+        wheelCurvedPicker.setData(data);
+        wheelCurvedPicker.setOnWheelChangeListener(new AbstractWheelPicker.OnWheelChangeListener() {
+            @Override
+            public void onWheelScrolling(float deltaX, float deltaY) {
+            }
+
+            @Override
+            public void onWheelSelected(int index, String data) {
+                currentFilterInt = (index + 1)*10;
+            }
+
+            @Override
+            public void onWheelScrollStateChanged(int state) {
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+        alertDialog.show();
+
     }
 
     @Override
@@ -150,6 +233,7 @@ public class DeviceScanActivity extends ListActivity {
         if (device == null) return;
         final Intent intent = new Intent(this, DeviceControlActivity.class);
         intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
+        intent.putExtra("timer", currentFilterInt);
         intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
         if (mScanning) {
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
@@ -211,6 +295,9 @@ public class DeviceScanActivity extends ListActivity {
 
         @Override
         public Object getItem(int i) {
+            if(mLeDevices.size() == 0) {
+                return null;
+            }
             return mLeDevices.get(i);
         }
 
@@ -235,6 +322,7 @@ public class DeviceScanActivity extends ListActivity {
 
             BluetoothDevice device = mLeDevices.get(i);
             final String deviceName = device.getName();
+
             if (deviceName != null && deviceName.length() > 0)
                 viewHolder.deviceName.setText(deviceName);
             else
