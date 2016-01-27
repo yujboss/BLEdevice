@@ -269,6 +269,7 @@ containing a value of this type.
         public static final int date_text=0x7f0b000e;
         public static final int device_address=0x7f0b0004;
         public static final int device_name=0x7f0b0027;
+        public static final int distance=0x7f0b0028;
         public static final int fara2_text=0x7f0b001a;
         public static final int fara_text=0x7f0b0015;
         public static final int frameLayout1=0x7f0b0010;
@@ -282,11 +283,11 @@ containing a value of this type.
         public static final int isSerial=0x7f0b0007;
         public static final int layoutAnalog=0x7f0b001c;
         public static final int layoutDigital=0x7f0b0011;
-        public static final int menu_connect=0x7f0b002b;
-        public static final int menu_disconnect=0x7f0b002c;
-        public static final int menu_refresh=0x7f0b0029;
-        public static final int menu_scan=0x7f0b002d;
-        public static final int menu_stop=0x7f0b002e;
+        public static final int menu_connect=0x7f0b002c;
+        public static final int menu_disconnect=0x7f0b002d;
+        public static final int menu_refresh=0x7f0b002a;
+        public static final int menu_scan=0x7f0b002e;
+        public static final int menu_stop=0x7f0b002f;
         public static final int mySwitch=0x7f0b0026;
         public static final int outDoorText=0x7f0b0022;
         public static final int straight=0x7f0b0001;
@@ -295,9 +296,9 @@ containing a value of this type.
         public static final int textView6=0x7f0b000b;
         public static final int thermoLocalImage=0x7f0b001f;
         public static final int thermoNetImage=0x7f0b0023;
-        public static final int timer=0x7f0b002a;
+        public static final int timer=0x7f0b002b;
         public static final int vertical=0x7f0b0003;
-        public static final int view=0x7f0b0028;
+        public static final int view=0x7f0b0029;
         public static final int vprogressbar=0x7f0b0020;
         public static final int vprogressbar2=0x7f0b0024;
     }

@@ -76,6 +76,7 @@ int id data_value 0x7f0b0006
 int id date_text 0x7f0b000e
 int id device_address 0x7f0b0004
 int id device_name 0x7f0b0027
+int id distance 0x7f0b0028
 int id fara2_text 0x7f0b001a
 int id fara_text 0x7f0b0015
 int id frameLayout1 0x7f0b0010
@@ -89,11 +90,11 @@ int id internet_data_analog 0x7f0b0021
 int id isSerial 0x7f0b0007
 int id layoutAnalog 0x7f0b001c
 int id layoutDigital 0x7f0b0011
-int id menu_connect 0x7f0b002b
-int id menu_disconnect 0x7f0b002c
-int id menu_refresh 0x7f0b0029
-int id menu_scan 0x7f0b002d
-int id menu_stop 0x7f0b002e
+int id menu_connect 0x7f0b002c
+int id menu_disconnect 0x7f0b002d
+int id menu_refresh 0x7f0b002a
+int id menu_scan 0x7f0b002e
+int id menu_stop 0x7f0b002f
 int id mySwitch 0x7f0b0026
 int id outDoorText 0x7f0b0022
 int id straight 0x7f0b0001
@@ -102,9 +103,9 @@ int id textView5 0x7f0b0009
 int id textView6 0x7f0b000b
 int id thermoLocalImage 0x7f0b001f
 int id thermoNetImage 0x7f0b0023
-int id timer 0x7f0b002a
+int id timer 0x7f0b002b
 int id vertical 0x7f0b0003
-int id view 0x7f0b0028
+int id view 0x7f0b0029
 int id vprogressbar 0x7f0b0020
 int id vprogressbar2 0x7f0b0024
 int layout actionbar_indeterminate_progress 0x7f040000

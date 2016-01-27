@@ -62,6 +62,7 @@ public class DeviceScanActivity extends ListActivity {
     private boolean mScanning;
     private Handler mHandler;
     int currentFilterInt=10;
+    int txPower=6;
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
@@ -130,6 +131,9 @@ public class DeviceScanActivity extends ListActivity {
         switch (item.getItemId()) {
             case R.id.menu_scan:
                 mLeDeviceListAdapter.clear();
+                mLeDeviceListAdapter.notifyDataSetChanged();
+                //setListAdapter(null);
+
                 scanLeDevice(true);
                 break;
             case R.id.menu_stop:
@@ -229,7 +233,7 @@ public class DeviceScanActivity extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
+        final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position).dev;
         if (device == null) return;
         final Intent intent = new Intent(this, DeviceControlActivity.class);
         intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
@@ -262,25 +266,51 @@ public class DeviceScanActivity extends ListActivity {
         }
         invalidateOptionsMenu();
     }
+    double getDistance(int rssi, int txPower) {
+    /*
+     * RSSI = TxPower - 10 * n * lg(d)
+     * n = 2 (in free space)
+     *
+     * d = 10 ^ ((TxPower - RSSI) / (10 * n))
+     */
 
-    // Adapter for holding devices found through scanning.
+        return Math.pow(10d, ((double) txPower - rssi) / (10 * 2));
+    }
+    private class BluetoothDev{
+        public BluetoothDevice dev;
+        public int rssi;
+
+        public BluetoothDev(BluetoothDevice device, int rssi) {
+            this.dev=device;
+            this.rssi=rssi;
+        }
+    }
+        // Adapter for holding devices found through scanning.
     private class LeDeviceListAdapter extends BaseAdapter {
-        private ArrayList<BluetoothDevice> mLeDevices;
+        private ArrayList<BluetoothDev> mLeDevices;
         private LayoutInflater mInflator;
 
         public LeDeviceListAdapter() {
             super();
-            mLeDevices = new ArrayList<BluetoothDevice>();
+            mLeDevices = new ArrayList<BluetoothDev>();
+
             mInflator = DeviceScanActivity.this.getLayoutInflater();
         }
 
-        public void addDevice(BluetoothDevice device) {
-            if(!mLeDevices.contains(device)) {
-                mLeDevices.add(device);
+        public void addDevice(BluetoothDevice device, int rssi) {
+            BluetoothDev temp = new BluetoothDev(device, rssi);
+            if(mLeDevices.isEmpty()) mLeDevices.add(temp);
+            for(BluetoothDev tempi:mLeDevices){
+                if(!tempi.dev.equals(device)){
+                    mLeDevices.add(temp);
+                }
             }
+            /*if(!mLeDevices.contains(temp)) {
+                mLeDevices.add(temp);
+            }*/
         }
 
-        public BluetoothDevice getDevice(int position) {
+        public BluetoothDev getDevice(int position) {
             return mLeDevices.get(position);
         }
 
@@ -315,19 +345,25 @@ public class DeviceScanActivity extends ListActivity {
                 viewHolder = new ViewHolder();
                 viewHolder.deviceAddress = (TextView) view.findViewById(R.id.device_address);
                 viewHolder.deviceName = (TextView) view.findViewById(R.id.device_name);
+                viewHolder.distance = (TextView) view.findViewById(R.id.distance);
+
                 view.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
 
-            BluetoothDevice device = mLeDevices.get(i);
+            BluetoothDevice device = mLeDevices.get(i).dev;
             final String deviceName = device.getName();
+
 
             if (deviceName != null && deviceName.length() > 0)
                 viewHolder.deviceName.setText(deviceName);
             else
                 viewHolder.deviceName.setText(R.string.unknown_device);
             viewHolder.deviceAddress.setText(device.getAddress());
+            Double distance = getDistance(mLeDevices.get(i).rssi, txPower);
+            int distanceInt = distance.intValue();
+            viewHolder.distance.setText("Distance: "+distanceInt+"m");
 
             return view;
         }
@@ -338,12 +374,14 @@ public class DeviceScanActivity extends ListActivity {
             new BluetoothAdapter.LeScanCallback() {
 
                 @Override
-                public void onLeScan(final BluetoothDevice device, int rssi, byte[] scanRecord) {
+                public void onLeScan(final BluetoothDevice device, final int rssi, byte[] scanRecord) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mLeDeviceListAdapter.addDevice(device);
+
+                            mLeDeviceListAdapter.addDevice(device,rssi);
                             mLeDeviceListAdapter.notifyDataSetChanged();
+
                         }
                     });
                 }
@@ -352,5 +390,6 @@ public class DeviceScanActivity extends ListActivity {
     static class ViewHolder {
         TextView deviceName;
         TextView deviceAddress;
+        TextView distance;
     }
 }

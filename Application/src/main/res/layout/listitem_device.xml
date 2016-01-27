@@ -25,4 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12dp"/>
+    <TextView android:id="@+id/distance"
+        android:layout_width="match_parent"
+        android:hint="10m"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:gravity="right" />
 </LinearLayout>
