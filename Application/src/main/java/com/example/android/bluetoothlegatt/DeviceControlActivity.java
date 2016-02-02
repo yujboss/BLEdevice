@@ -278,11 +278,11 @@ public class DeviceControlActivity extends Activity {
             final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
         }
-        JSONWeatherTask task;
+
         task = new JSONWeatherTask();
         task.execute(new String[]{city});
     }
-
+    JSONWeatherTask task;
     @Override
     protected void onPause() {
         super.onPause();
@@ -304,6 +304,7 @@ public class DeviceControlActivity extends Activity {
             e.printStackTrace();
         }
         flag = false;
+        task.cancel(true);
     }
 
 
@@ -520,6 +521,7 @@ public class DeviceControlActivity extends Activity {
             while (flag == true && !isCancelled()) {
                 while (isNetworkAvailable() == true && flag == true && !isCancelled()) {
                     String data = ((new WeatherHttpClient()).getWeatherData(params[0]));
+                    Log.d("weather2",data);
                     try {
                         weather = JSONWeatherParser.getWeather(data);
                         //weather.iconData = ((new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
@@ -542,7 +544,7 @@ public class DeviceControlActivity extends Activity {
         protected void onProgressUpdate(Weather... weather2) {
             super.onProgressUpdate(weather2);
             Weather weather = weather2[0];
-            if (weather.location!=null && weather.iconData != null && weather.iconData.length > 0) {
+            if (weather!=null  &&weather.location!=null) {
 
                 ll = (LinearLayout) findViewById(R.id.internet_data);
                 ll.setVisibility(View.VISIBLE);

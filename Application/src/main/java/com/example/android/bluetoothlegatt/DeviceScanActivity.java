@@ -50,6 +50,8 @@ import com.aigestudio.wheelpicker.core.AbstractWheelPicker;
 import com.aigestudio.wheelpicker.view.WheelCurvedPicker;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 // 15.12.2015 Created by Khurshid Aliev
@@ -87,7 +89,7 @@ public class DeviceScanActivity extends ListActivity {
         imgView.setScaleType(ImageView.ScaleType.CENTER);
         //imgView.setLayoutParams(layoutParams);
         imgView.setImageResource(R.drawable.untitled);
-        lv.addFooterView(imgView);
+        lv.addFooterView(imgView,null,false);
         //getListView().setBackgroundResource(R.drawable.untitled);
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
@@ -288,24 +290,34 @@ public class DeviceScanActivity extends ListActivity {
         // Adapter for holding devices found through scanning.
     private class LeDeviceListAdapter extends BaseAdapter {
         private ArrayList<BluetoothDev> mLeDevices;
+            private HashMap<String,BluetoothDev> data;
         private LayoutInflater mInflator;
 
         public LeDeviceListAdapter() {
             super();
             mLeDevices = new ArrayList<BluetoothDev>();
+            data = new HashMap<String,BluetoothDev>();
 
             mInflator = DeviceScanActivity.this.getLayoutInflater();
         }
 
         public void addDevice(BluetoothDevice device, int rssi) {
             BluetoothDev temp = new BluetoothDev(device, rssi);
-            if(mLeDevices.isEmpty()) mLeDevices.add(temp);
-            for(BluetoothDev tempi:mLeDevices){
-                if(!tempi.dev.equals(device)){
-                    mLeDevices.add(temp);
+            data.put(device.getName(),temp);
+            mLeDevices.clear();
+            mLeDevices.addAll(data.values());
+            /*if(mLeDevices.isEmpty()) mLeDevices.add(temp);
+
+            Iterator<BluetoothDev> iter = mLeDevices.iterator();
+            List<BluetoothDev> thingsToBeAdd = new ArrayList<BluetoothDev>();
+            while(iter.hasNext()) {
+                BluetoothDev blah = iter.next();
+                if(!blah.dev.getAddress().equals(device.getAddress())){
+                    thingsToBeAdd.add(temp);
                 }
             }
-            /*if(!mLeDevices.contains(temp)) {
+            mLeDevices.addAll(thingsToBeAdd );
+            *//*if(!mLeDevices.contains(temp)) {
                 mLeDevices.add(temp);
             }*/
         }
