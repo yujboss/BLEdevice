@@ -143,9 +143,22 @@ public class DeviceScanActivity extends ListActivity {
                 break;
             case R.id.timer:
                 showTimer();
+                //tempStart();
                 break;
         }
         return true;
+    }
+
+    private void tempStart() {
+        final Intent intent = new Intent(this, DeviceControlActivity.class);
+        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME,"");
+        intent.putExtra("timer", currentFilterInt);
+        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, "");
+        if (mScanning) {
+            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            mScanning = false;
+        }
+        startActivity(intent);
     }
 
     private void showTimer() {

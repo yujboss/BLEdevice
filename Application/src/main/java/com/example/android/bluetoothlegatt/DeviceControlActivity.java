@@ -160,7 +160,7 @@ public class DeviceControlActivity extends Activity {
                 String sensedData = intent.getStringExtra(mBluetoothLeService.EXTRA_DATA);
                 appendDataToBuffer(sensedData);
                 Log.d("timer", "Data recieved: " + sensedData);
-                stop();
+
             }
         }
     };
@@ -183,7 +183,7 @@ public class DeviceControlActivity extends Activity {
         vProgressBar = (ProgressBar) findViewById(R.id.vprogressbar);
         vProgressBar2 = (ProgressBar) findViewById(R.id.vprogressbar2);
         ////////////////////////////////////////////////////////////////////
-
+        //start();
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         BLUETOOTH_TIMER=intent.getIntExtra("timer", 0);
@@ -206,6 +206,8 @@ public class DeviceControlActivity extends Activity {
         fara_text = (TextView) findViewById(R.id.fara_text);
         date_text = (TextView) findViewById(R.id.date_text);
         gattServiceIntent = new Intent(this, BluetoothLeService.class);
+        Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
+        bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
         startTimer();
         updateTimeThread();
         cityText = (TextView) findViewById(R.id.cityText);
@@ -228,9 +230,9 @@ public class DeviceControlActivity extends Activity {
     Intent gattServiceIntent;
     public void stop() {
 
-        stopService(gattServiceIntent);
+       /* stopService(gattServiceIntent);
         if (isBound) unbindService(mServiceConnection);
-        Log.d("timer", "Service Stopped");
+        Log.d("timer", "Service Stopped");*/
     }
 
 
@@ -304,7 +306,7 @@ public class DeviceControlActivity extends Activity {
             e.printStackTrace();
         }
         flag = false;
-        task.cancel(true);
+       // task.cancel(true);
     }
 
 
@@ -409,7 +411,8 @@ public class DeviceControlActivity extends Activity {
             characteristicRX = gattService.getCharacteristic(BluetoothLeService.UUID_HM_RX_TX);
             if(characteristicTX!=null)     temp_update_timer_function(null);
         }
-
+        timer.schedule(timer_humid, 5000, 15000); //
+        timer2.schedule(timer_temp, 1000, 15000); //
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {
@@ -489,7 +492,7 @@ public class DeviceControlActivity extends Activity {
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
-                        start();
+
                       // Log.d("timer", "starting");
                     }
                 });
