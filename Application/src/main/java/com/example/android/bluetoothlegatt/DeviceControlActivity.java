@@ -216,8 +216,7 @@ public class DeviceControlActivity extends Activity {
         fara2_text = (TextView) findViewById(R.id.fara2_text);
         initSwitch();
         timerBluetooth.schedule(timerTask, 0, BLUETOOTH_TIMER*1000);
-        timer.schedule(timer_humid, 5000, 15000); //
-        timer2.schedule(timer_temp, 1000, 15000); //timer
+
         Log.d("timer", "timer is set to" + BLUETOOTH_TIMER * 1000);
 
     }
@@ -241,8 +240,8 @@ public class DeviceControlActivity extends Activity {
         writer.write(line);
     }
 
-    private void writeCsvData(String date, float e, float f) throws IOException {
-        String line = String.format("%s,%.0f,%.0f\n", date, e, f);
+    private void writeCsvData() throws IOException {
+        String line = String.format("%s,%.0f,%.0f\n", resultDate, resultTemp, resultHumid);
         writer.write(line);
     }
 
@@ -296,8 +295,7 @@ public class DeviceControlActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //if (isBound&&mServiceConnection!=null) unbindService(mServiceConnection);
-        stoptimertask();
+        unbindService(mServiceConnection);
         mBluetoothLeService = null;
         try {
             writer.flush();
@@ -373,16 +371,19 @@ public class DeviceControlActivity extends Activity {
                 float RH = Math.round((-6 + (125.0 / 65536.0) * (float) h));//Return the humidity
                 humid_text.setText("HUMIDITY:" + " " + String.format("%.0f%%", RH));
                 humid = RH;
-                try {
+
                     date = sdf.format(new Date());
-                    writeCsvData(date, temp, humid);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    resultDate =date;
+                    resultTemp=temp;
+                    resultHumid=humid;
+                    //writeCsvData(date, temp, humid);
+
             }
         }
     }
-
+    String resultDate="No data yet";
+    float resultTemp = 0;
+    float resultHumid = 0;
 
     // Demonstrates how to iterate through the supported GATT Services/Characteristics.
     // In this sample, we populate the data structure that is bound to the ExpandableListView
@@ -409,10 +410,10 @@ public class DeviceControlActivity extends Activity {
             // get characteristic when UUID matches RX/TX UUID
             characteristicTX = gattService.getCharacteristic(BluetoothLeService.UUID_HM_RX_TX);
             characteristicRX = gattService.getCharacteristic(BluetoothLeService.UUID_HM_RX_TX);
-            if(characteristicTX!=null)     temp_update_timer_function(null);
         }
         timer.schedule(timer_humid, 5000, 15000); //
         timer2.schedule(timer_temp, 1000, 15000); //
+
     }
 
     private static IntentFilter makeGattUpdateIntentFilter() {
@@ -492,8 +493,12 @@ public class DeviceControlActivity extends Activity {
             public void run() {
                 handler.post(new Runnable() {
                     public void run() {
-
-                      // Log.d("timer", "starting");
+                        try {
+                            writeCsvData();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Log.d("timer", "stored in file");
                     }
                 });
             }
@@ -507,7 +512,7 @@ public class DeviceControlActivity extends Activity {
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
                         final String strDate = simpleDateFormat.format(calendar.getTime());
                         int duration = Toast.LENGTH_SHORT;
-
+                        temp_update_timer_function(null);
                     }
                 });
             }
